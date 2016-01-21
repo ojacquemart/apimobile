@@ -1,0 +1,4 @@
+Auchan API Mobile
+=
+
+Read menus from http://auchan1.apimobile.fr/LesMenus
