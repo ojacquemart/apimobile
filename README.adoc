@@ -3,6 +3,8 @@
 Read menus from http://auchan1.apimobile.fr/LesMenus
 
 * GET `/apiauchan/menus`: list menus as string
-* POST `/apiauchan/menus`: post menus to a slack
+* POST `/apiauchan/menus`: post menus to slack
+
+A scheduled task sends the menu at 10 am (monday to friday).
 
 Little project done during slack hours based on spring boot & jsoup.
