@@ -1,4 +1,4 @@
-package com.github.ojacquemart.web;
+package com.github.ojacquemart.apiauchan.restaurant.menu.slack;
 
 import lombok.Data;
 import lombok.ToString;

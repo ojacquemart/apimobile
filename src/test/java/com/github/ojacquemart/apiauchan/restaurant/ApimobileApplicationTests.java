@@ -1,5 +1,6 @@
-package com.github.ojacquemart;
+package com.github.ojacquemart.apiauchan.restaurant;
 
+import com.github.ojacquemart.ApimobileApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.web.WebAppConfiguration;

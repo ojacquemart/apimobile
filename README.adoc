@@ -1,4 +1,8 @@
-Auchan API Mobile
-=
+= Auchan API Mobile
 
 Read menus from http://auchan1.apimobile.fr/LesMenus
+
+* GET `/apiauchan/menus`: list menus as string
+* POST `/apiauchan/menus`: post menus to a slack
+
+Little project done during slack hours based on spring boot & jsoup.
