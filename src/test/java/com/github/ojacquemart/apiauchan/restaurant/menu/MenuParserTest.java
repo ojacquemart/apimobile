@@ -1,27 +1,40 @@
 package com.github.ojacquemart.apiauchan.restaurant.menu;
 
 import com.github.ojacquemart.apiauchan.restaurant.util.jsoup.JsoupDocument;
+import com.github.ojacquemart.apiauchan.restaurant.util.jsoup.JsoupDocumentReadException;
 import org.jsoup.nodes.Document;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.BDDMockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyString;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(JsoupDocument.class)
 public class MenuParserTest {
 
-    private MenuParser parser;
+    @Test
+    public void testParse_onError() {
+        PowerMockito.mockStatic(JsoupDocument.class);
+        BDDMockito.given(JsoupDocument.url(anyString())).willThrow(JsoupDocumentReadException.class);
 
-    @Before
-    public void setUp() throws Exception {
-        Document document = JsoupDocument.file("/20160429-api-restauration.html");
+        String messageOnError = MenuParser.parseFromUrl();
+        assertThat(messageOnError).startsWith("Oops");
 
-        parser = new MenuParser(document);
+        PowerMockito.verifyStatic();
     }
 
     @Test
     public void testParse() throws Exception {
+        Document document = JsoupDocument.file("/20160429-api-restauration.html");
+
+        MenuParser parser = new MenuParser(document);
         Menu menu = parser.parse();
 
         assertThat(menu).isNotNull();

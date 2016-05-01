@@ -25,6 +25,8 @@
 		<lombok.version>1.16.4</lombok.version>
 		<jsoup.version>1.8.3</jsoup.version>
 		<assertj-core.version>3.4.1</assertj-core.version>
+		<mockito-core.version>1.10.19</mockito-core.version>
+		<powermock.version>1.6.5</powermock.version>
 	</properties>
 
 	<dependencies>
@@ -57,6 +59,27 @@
 			<artifactId>assertj-core</artifactId>
 			<version>${assertj-core.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockito-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-core</artifactId>
+			<version>${powermock.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>${powermock.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
 		</dependency>
 	</dependencies>
 	

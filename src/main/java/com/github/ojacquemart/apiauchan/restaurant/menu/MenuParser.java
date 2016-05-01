@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@AllArgsConstructor
 @Slf4j
+@AllArgsConstructor
 public class MenuParser {
     public static final String DISH_FAMILY_SELECTOR = ".dishes-list";
     public static final String DISH_NAME_SELECTOR = ".dish-name";
@@ -22,8 +22,16 @@ public class MenuParser {
     public static final String EURO = "€";
     public static final String EURO_EMOJI = ":euro:";
 
-    public static Menu parseFromUrl() {
-        return new MenuParser(JsoupDocument.url(Menu.URL)).parse();
+    public static String parseFromUrl() {
+        try {
+            Menu menu = new MenuParser(JsoupDocument.url(Menu.URL)).parse();
+
+            return menu.toString();
+        } catch (Exception e) {
+            log.error("Failed to fetch the menu", e);
+
+            return "Oops, I swallowed an hard to digest error... maybe the site is down! Retry the command... :rose:";
+        }
     }
 
     private Document document;
