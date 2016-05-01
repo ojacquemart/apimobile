@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 @UtilityClass
 public class JsoupDocument {
 
-    private static final int TIMEOUT = 10000;
+    private static final int TIMEOUT = 20000;
 
     public static Document url(String url) {
         try {
