@@ -25,14 +25,14 @@ public class MenuTest {
 
         assertThat(menuAsString).isNotNull();
         assertThat(menuAsString).isEqualTo(
-            "API MENU\n\n" +
-                    "foo\n" +
-                    "\tfoo 1€\n" +
-                    "\tbar 2€\n" +
+            "*API MENU*\n\n" +
+                    "> *foo*\n" +
+                    "foo 1€\n" +
+                    "bar 2€\n" +
                     "\n" +
-                    "bar\n" +
-                    "\tbar 3€\n" +
-                    "\tbar 4€\n" +
+                    "> *bar*\n" +
+                    "bar 3€\n" +
+                    "bar 4€\n" +
                     "\n"
         );
     }

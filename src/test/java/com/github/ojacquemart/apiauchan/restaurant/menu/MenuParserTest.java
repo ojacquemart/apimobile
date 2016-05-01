@@ -34,7 +34,7 @@ public class MenuParserTest {
         List<Dish> dishes = dishGroup1.getDishes();
         assertThat(dishes).hasSize(2)
             .extracting("name")
-            .contains("Demie faluche à la bolognaise €", "Randolini brasato");
+            .contains("Demie faluche à la bolognaise :euro:", "Randolini brasato");
     }
 
 }

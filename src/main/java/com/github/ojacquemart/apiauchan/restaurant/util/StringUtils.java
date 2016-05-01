@@ -2,12 +2,16 @@ package com.github.ojacquemart.apiauchan.restaurant.util;
 
 public class StringUtils {
 
-    public static String capitalize(String words) {
-        if (words == null || words.isEmpty()) {
-            return words;
+    public static String capitalize(String inString) {
+        if (inString == null || inString.isEmpty()) {
+            return inString;
         }
 
-        return words.substring(0, 1).toUpperCase() + words.substring(1).toLowerCase();
+        return inString.substring(0, 1).toUpperCase() + inString.substring(1).toLowerCase();
+    }
+
+    public static String replace(String inString, String oldPattern, String newPattern) {
+        return org.springframework.util.StringUtils.replace(inString, oldPattern, newPattern);
     }
 
 }

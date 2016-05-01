@@ -19,6 +19,9 @@ public class MenuParser {
     public static final String DISH_NAME_SELECTOR = ".dish-name";
     public static final String DISH_PRICE_SELECTOR = ".dish-price";
 
+    public static final String EURO = "€";
+    public static final String EURO_EMOJI = ":euro:";
+
     public static Menu parseFromUrl() {
         return new MenuParser(JsoupDocument.url(Menu.URL)).parse();
     }
@@ -65,11 +68,14 @@ public class MenuParser {
         // start loop at 1, first element is an empty dish
         for (int i = 1; i < subElements.size(); i++) {
             Element dishElement = subElements.get(i);
+
             String dishName = dishElement.select(DISH_NAME_SELECTOR).text();
             String dishNameAsCapitalize = StringUtils.capitalize(dishName);
+            String dishNameWithEuroEmoji = StringUtils.replace(dishNameAsCapitalize, EURO, EURO_EMOJI);
+
             String dishPrice = dishElement.select(DISH_PRICE_SELECTOR).text();
 
-            Dish dish = new Dish(dishNameAsCapitalize, dishPrice);
+            Dish dish = new Dish(dishNameWithEuroEmoji, dishPrice);
 
             log.trace("\tDish: {}", dish);
             dishes.add(dish);
