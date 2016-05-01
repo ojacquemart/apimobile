@@ -1,4 +1,4 @@
-package com.github.ojacquemart.apiauchan.restaurant.menu.model;
+package com.github.ojacquemart.apiauchan.restaurant.menu;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Getter
-public class DishFamily {
+public class DishGroup {
     private String label;
-    private List<String> dishes;
+    private List<Dish> dishes;
 }

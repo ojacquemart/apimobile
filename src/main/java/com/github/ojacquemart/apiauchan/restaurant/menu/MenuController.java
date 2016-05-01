@@ -1,6 +1,5 @@
 package com.github.ojacquemart.apiauchan.restaurant.menu;
 
-import com.github.ojacquemart.apiauchan.restaurant.menu.reader.MenuReader;
 import com.github.ojacquemart.apiauchan.restaurant.menu.slack.MessageSender;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class MenuController {
 
     private MessageSender sender;
-    private MenuReader reader;
 
     @RequestMapping(value = "/menus", method = RequestMethod.POST)
     @Scheduled(cron = "0 0 10 * * 1-5")
     public void postMenus() {
-        String menu = reader.getMenuAsString();
+        String menu = getMenuAsString();
         sender.sendMenu(menu);
     }
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     public String getMenusAsString() {
-        return reader.getMenuAsString();
+        return getMenuAsString();
+    }
+
+    private String getMenuAsString() {
+        return MenuParser.parseFromUrl().toString();
     }
 
 }
