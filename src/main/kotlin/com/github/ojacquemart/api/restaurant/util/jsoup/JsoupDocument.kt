@@ -1,6 +1,6 @@
-package com.github.ojacquemart.apiauchan.restaurant.util.jsoup
+package com.github.ojacquemart.api.restaurant.util.jsoup
 
-import com.github.ojacquemart.apiauchan.restaurant.lang.loggerFor
+import com.github.ojacquemart.api.restaurant.lang.loggerFor
 import lombok.experimental.UtilityClass
 import lombok.extern.slf4j.Slf4j
 import org.jsoup.Jsoup

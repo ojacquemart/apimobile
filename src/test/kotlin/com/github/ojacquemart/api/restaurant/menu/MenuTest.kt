@@ -1,4 +1,4 @@
-package com.github.ojacquemart.apiauchan.restaurant.menu
+package com.github.ojacquemart.api.restaurant.menu
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before

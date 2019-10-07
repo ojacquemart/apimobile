@@ -1,4 +1,4 @@
-package com.github.ojacquemart.apiauchan.restaurant.lang
+package com.github.ojacquemart.api.restaurant.lang
 
 import org.slf4j.LoggerFactory
 
