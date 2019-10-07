@@ -1,4 +1,4 @@
-package com.github.ojacquemart.apiauchan.restaurant
+package com.github.ojacquemart.api.restaurant
 
 import org.junit.Test
 import org.junit.runner.RunWith

@@ -1,4 +1,4 @@
-package com.github.ojacquemart.apiauchan.restaurant.menu
+package com.github.ojacquemart.api.restaurant.menu
 
 data class Menu(val dishGroups: List<DishGroup>) {
 
@@ -23,8 +23,6 @@ data class Menu(val dishGroups: List<DishGroup>) {
     }
 
     companion object {
-        val URL = "http://auchan1.apimobile.fr/LesMenus"
-
         val TITLE = "API MENU"
         val NEW_LINE = "\n"
         val TAB = "\t"

@@ -1,6 +1,6 @@
-package com.github.ojacquemart.apiauchan.restaurant.menu
+package com.github.ojacquemart.api.restaurant.menu
 
-import com.github.ojacquemart.apiauchan.restaurant.util.jsoup.JsoupDocument
+import com.github.ojacquemart.api.restaurant.util.jsoup.JsoupDocument
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 

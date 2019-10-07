@@ -1,7 +1,7 @@
-package com.github.ojacquemart.apiauchan.restaurant.menu
+package com.github.ojacquemart.api.restaurant.menu
 
-import com.github.ojacquemart.apiauchan.restaurant.lang.loggerFor
-import com.github.ojacquemart.apiauchan.restaurant.util.jsoup.JsoupDocument
+import com.github.ojacquemart.api.restaurant.lang.loggerFor
+import com.github.ojacquemart.api.restaurant.util.jsoup.JsoupDocument
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 import java.util.*
@@ -76,9 +76,9 @@ class MenuParser(val document: Document) {
         val EURO = "€"
         val EURO_EMOJI = ":euro:"
 
-        fun parseFromUrl(): String {
+        fun parseFromUrl(url: String): String {
             try {
-                val menu = MenuParser(JsoupDocument.url(Menu.URL)).parse()
+                val menu = MenuParser(JsoupDocument.url(url)).parse()
 
                 return menu.toString()
             } catch (e: Exception) {

@@ -1,0 +1,2 @@
+menu:
+  url: "http://{API_INSTANCE}.apimobile.fr/LesMenus"
