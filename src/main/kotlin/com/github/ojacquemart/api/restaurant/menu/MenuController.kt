@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/api")
 @RestController
-class MenuController(val properties: MenuProperties) {
+class MenuController(val menuService: MenuService) {
 
     @RequestMapping(value = ["/menus"], method = [RequestMethod.GET], produces = [MediaType.TEXT_PLAIN_VALUE])
-    fun menusAsString(): String = MenuParser.parseFromUrl(properties.safeUrl())
+    fun menusAsString(): String = menuService.getMenu()
 
 }

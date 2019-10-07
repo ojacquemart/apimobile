@@ -1,7 +1,44 @@
-= Auchan API Mobile
+= API Mobile service
 
-This spring boot app exposes a REST API from http://auchan1.apimobile.fr/LesMenus
+This spring boot app exposes a REST API from an API Mobile website (http://${API_INSTANCE}.apimobile.fr/LesMenus)
 
-* GET `/apiauchan/menus`: list menus as string
+API mobile is a website available by the food company API.
 
 This is a little project done during slack hours.
+
+It is dedicated to hungry teams who often ask themselves "Should I go eat somewhere else?".
+
+== Configuration
+
+Your API instance is configurable through the VM options or the env variable: `API_INSTANCE` (http://${API_INSTANCE}.apimobile.fr/LesMenus)
+
+== Rest API
+
+* GET `/api/menus`: list menus as string
+
+== Announcers
+
+A scheduled tasked can be configured to announce the day menu.
+
+Configuration example for a TTS (Text To Speech) service and a slack:
+
+```
+menu.announcer:
+  enabled: true
+  cron: 0 0 11 * * 1-5 # announce made from monday to friday at 11am
+  webHooks:
+    # full configuration example
+    - url: http://localhost:8080/hello
+      times: 2 # announce repeated 2 times (default is 1)
+      sleep: 30000 # sleep time between two announces (default is null)
+      textAttribute: msg # the attribute name used by your destination endpoint (default is 'text')
+      # optional map of attributes
+      additionalAttributes:
+        volume: 100
+        lang: fr
+    # slack-like service
+    - url: http://slack-like.com/hooks/{hookId}
+```
+
+[NOTE]
+The announcers mechanism only supports the cron attribute, at the moment.
