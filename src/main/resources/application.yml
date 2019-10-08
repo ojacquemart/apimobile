@@ -1,2 +1,4 @@
 menu:
-  url: "http://{API_INSTANCE}.apimobile.fr/LesMenus"
+  url: "http://${API_INSTANCE}.apimobile.fr/LesMenus"
+logging.level:
+  "com.github.ojacquemart.api.restaurant": DEBUG
