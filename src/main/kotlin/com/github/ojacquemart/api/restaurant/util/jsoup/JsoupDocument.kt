@@ -1,15 +1,11 @@
 package com.github.ojacquemart.api.restaurant.util.jsoup
 
 import com.github.ojacquemart.api.restaurant.lang.loggerFor
-import lombok.experimental.UtilityClass
-import lombok.extern.slf4j.Slf4j
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
 import java.nio.charset.StandardCharsets
 
-@Slf4j
-@UtilityClass
 object JsoupDocument {
 
     private val TIMEOUT = 10000
