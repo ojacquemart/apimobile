@@ -1,10 +1,14 @@
 package com.github.ojacquemart.api.restaurant.menu
 
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
-class MenuService(val properties: MenuProperties) {
+open class MenuService(val properties: MenuProperties) {
 
-    fun getMenu() = MenuParser.parseFromUrl(properties.safeUrl())
+    @Cacheable(value = ["menus"])
+    open fun getMenu(): String {
+        return MenuParser.parseFromUrl(properties.safeUrl())
+    }
 
 }
