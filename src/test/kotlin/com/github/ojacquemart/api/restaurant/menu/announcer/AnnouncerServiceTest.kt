@@ -63,7 +63,6 @@ class AnnouncerServiceTest {
                 .andRespond(withStatus(HttpStatus.NO_CONTENT)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-
     }
 
     @Test

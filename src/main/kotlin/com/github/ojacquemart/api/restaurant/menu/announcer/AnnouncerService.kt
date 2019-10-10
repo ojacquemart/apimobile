@@ -3,11 +3,13 @@ package com.github.ojacquemart.api.restaurant.menu.announcer
 import com.github.ojacquemart.api.restaurant.lang.loggerFor
 import com.github.ojacquemart.api.restaurant.menu.MenuProperties
 import com.github.ojacquemart.api.restaurant.menu.MenuService
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
-import java.lang.Thread.sleep
 import javax.annotation.PostConstruct
 
 @Service
@@ -30,25 +32,23 @@ class AnnouncerService(val template: RestTemplate,
         } ?: logger.warn("No web hooks configured?")
     }
 
-    private fun doAnnounce(webHooks: List<WebHook>) {
+    private fun doAnnounce(webHooks: List<WebHook>) = runBlocking {
         val menu = menuService.getMenu()
 
         logger.debug("${webHooks.size} web hook(s) to announce")
-        webHooks.forEach {
-            postAnnounce(it, menu)
-        }
-    }
-
-    private fun postAnnounce(webHook: WebHook, menu: String) {
-        logger.debug("Post menu to $webHook")
-
-        repeat(webHook.safeTimes()) {
-            postMenu(webHook, menu)
-            sleepIfNecessary(webHook)
+        webHooks.map { webHook ->
+            async {
+                repeat(webHook.safeTimes()) {
+                    postMenu(webHook, menu)
+                    delayIfNecessary(webHook)
+                }
+            }
         }
     }
 
     private fun postMenu(webHook: WebHook, menu: String) {
+        logger.debug("Post menu to $webHook")
+
         webHook.url?.let { url ->
             val payload = webHook.getPayload(menu)
 
@@ -56,9 +56,10 @@ class AnnouncerService(val template: RestTemplate,
         } ?: logger.warn("No web hook url defined")
     }
 
-    private fun sleepIfNecessary(webHook: WebHook) {
-        webHook.sleep?.let {
-            sleep(it)
+    private suspend fun delayIfNecessary(webHook: WebHook) {
+        webHook.sleep?.let { sleep ->
+            logger.debug("Delay $sleep ms")
+            delay(sleep)
         }
     }
 

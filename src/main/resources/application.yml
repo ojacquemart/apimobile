@@ -1,4 +1,8 @@
+server:
+  port: 8181
+
 menu:
   url: "http://${API_INSTANCE}.apimobile.fr/LesMenus"
+
 logging.level:
   "com.github.ojacquemart.api.restaurant": DEBUG
