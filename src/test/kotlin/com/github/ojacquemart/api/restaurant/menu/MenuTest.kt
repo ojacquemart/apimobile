@@ -11,9 +11,17 @@ class MenuTest {
     @Before
     @Throws(Exception::class)
     fun setUp() {
-        menu = Menu(listOf(
-                DishGroup("foo", listOf(Dish("foo", "1€"), Dish("bar", "2€"))),
-                DishGroup("bar", listOf(Dish("bar", "3€"), Dish("bar", "4€")))))
+        menu = Menu(
+                listOf(
+                        DishGroup("foo", listOf(Dish("foo", "1€"), Dish("bar", "2€"))),
+                        DishGroup("bar", listOf(Dish("bar", "3€"), Dish("bar", "4€"))))
+                ,
+                yesterdayMenu = Menu(
+                        listOf(
+                                DishGroup("foo", listOf(Dish("foo", "1€"), Dish("bar", "2€")))
+                        )
+                )
+        )
     }
 
     @Test
@@ -22,7 +30,7 @@ class MenuTest {
 
         assertThat(menuAsString).isNotNull()
         assertThat(menuAsString).isEqualTo(
-                "*API MENU*\n\n" +
+                "**API MENU**\n\n" +
                         "> *foo*\n" +
                         "foo *(1€)*\n" +
                         "bar *(2€)*\n" +
@@ -30,7 +38,12 @@ class MenuTest {
                         "> *bar*\n" +
                         "bar *(3€)*\n" +
                         "bar *(4€)*\n" +
-                        "\n")
+                        "\n" +
+                "**${Menu.YESTERDAY}**\n\n" +
+                        "foo *(1€)*\n" +
+                        "bar *(2€)*\n" +
+                        "\n"
+        )
     }
 
     @Test
@@ -39,7 +52,7 @@ class MenuTest {
 
         assertThat(menuAsString).isNotNull()
         assertThat(menuAsString).isEqualTo(
-                        "> *foo*\n" +
+                "> *foo*\n" +
                         "foo\n" +
                         "bar\n" +
                         "\n" +
@@ -51,13 +64,13 @@ class MenuTest {
 
     @Test
     fun testWriteWithOnlyOneDishGroup() {
-        val menu =  Menu(listOf(
+        val menu = Menu(listOf(
                 DishGroup("foo", listOf(Dish("foo", "1€"), Dish("bar", "2€")))))
         val menuAsString = menu.write(emptyList())
 
         assertThat(menuAsString).isNotNull()
         assertThat(menuAsString).isEqualTo(
-                        "foo\n" +
+                "foo\n" +
                         "bar\n" +
                         "\n")
     }

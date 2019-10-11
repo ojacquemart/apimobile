@@ -7,12 +7,11 @@ import org.junit.Test
 class MenuParserTest {
 
     @Test
-    @Throws(Exception::class)
     fun testParse() {
         val document = JsoupDocument.file("/20160429-api-restauration.html")
 
-        val parser = MenuParser(document)
-        val menu = parser.parse()
+        val parser = MenuParser()
+        val menu = parser.parse(document)
 
         assertThat(menu).isNotNull()
         val dishGroups = menu.dishGroups

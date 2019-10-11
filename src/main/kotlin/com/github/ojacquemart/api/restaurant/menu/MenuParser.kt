@@ -3,23 +3,21 @@ package com.github.ojacquemart.api.restaurant.menu
 import com.github.ojacquemart.api.restaurant.lang.loggerFor
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
+import org.springframework.stereotype.Service
 import java.util.*
 
-class MenuParser(val document: Document) {
+@Service
+class MenuParser {
 
-    fun parse(): Menu {
+    fun parse(document: Document): Menu {
         log.info("Read menus")
 
-        return readMenu()
-    }
-
-    private fun readMenu(): Menu {
-        val dishGroups = readDishGroups()
+        val dishGroups = readDishGroups(document)
 
         return Menu(dishGroups)
     }
 
-    private fun readDishGroups(): List<DishGroup> {
+    private fun readDishGroups(document: Document): List<DishGroup> {
         log.debug("Read dish groups")
 
         val groups = ArrayList<DishGroup>()
