@@ -24,12 +24,12 @@ class MenuTest {
         assertThat(menuAsString).isEqualTo(
                 "*API MENU*\n\n" +
                         "> *foo*\n" +
-                        "foo 1€\n" +
-                        "bar 2€\n" +
+                        "foo *(1€)*\n" +
+                        "bar *(2€)*\n" +
                         "\n" +
                         "> *bar*\n" +
-                        "bar 3€\n" +
-                        "bar 4€\n" +
+                        "bar *(3€)*\n" +
+                        "bar *(4€)*\n" +
                         "\n")
     }
 

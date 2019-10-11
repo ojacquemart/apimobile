@@ -16,7 +16,7 @@ data class Dish(val name: String, val price: String) : Comparable<Dish>, Writeab
 
     override fun write(options: List<WriterOption>): String {
         if (options.contains(WriterOption.DISH_PRICE)) {
-            return "$name $price"
+            return "$name *($price)*"
         }
 
         return name

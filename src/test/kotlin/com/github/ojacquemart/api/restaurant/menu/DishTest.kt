@@ -20,7 +20,7 @@ class DishTest {
 
     @Test
     fun testWrite() {
-        assertThat(dish1.write()).isEqualTo("foo 1€")
+        assertThat(dish1.write()).isEqualTo("foo *(1€)*")
     }
 
     @Test
