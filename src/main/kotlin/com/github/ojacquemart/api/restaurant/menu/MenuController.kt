@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController
 class MenuController(val menuService: MenuService) {
 
     @RequestMapping(value = ["/menus"], method = [RequestMethod.GET], produces = [MediaType.TEXT_PLAIN_VALUE])
-    fun menusAsString(): String = menuService.getMenu()
+    fun menusAsString(): String = menuService.getMenuAsString()
 
 }

@@ -31,6 +31,7 @@ menu.announcer:
     - url: http://localhost:8080/hello
       times: 2 # announce repeated 2 times (default is 1)
       sleep: 30000 # sleep time between two announces (default is null)
+      writerOptions: [] # options to change the menu output (defaults are [TITLE, DISH_PRICE])
       textAttribute: msg # the attribute name used by your destination endpoint (default is 'text')
       # optional map of attributes
       additionalAttributes:
@@ -38,6 +39,7 @@ menu.announcer:
         lang: fr
     # slack-like service
     - url: http://slack-like.com/hooks/{hookId}
+      writerOptions: [TITLE]
 ```
 
 [NOTE]

@@ -1,7 +1,6 @@
 package com.github.ojacquemart.api.restaurant.menu
 
 import com.github.ojacquemart.api.restaurant.lang.loggerFor
-import com.github.ojacquemart.api.restaurant.util.jsoup.JsoupDocument
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 import java.util.*
@@ -75,19 +74,6 @@ class MenuParser(val document: Document) {
 
         val EURO = "€"
         val EURO_EMOJI = ":euro:"
-
-        fun parseFromUrl(url: String): String {
-            try {
-                val menu = MenuParser(JsoupDocument.url(url)).parse()
-
-                return menu.toString()
-            } catch (e: Exception) {
-                log.error("Failed to fetch the menu", e)
-
-                return "Oops, I swallowed an hard to digest error... maybe the site is down! Retry the command... :rose:"
-            }
-
-        }
     }
 
 }
