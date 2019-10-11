@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
-open class MenuService(val properties: MenuProperties) {
+class MenuService(val properties: MenuProperties) {
 
     companion object {
         private const val MENU_FETCH_ERROR = "Oops, I swallowed an hard to digest error... maybe the site is down! Retry the command... :rose:"
@@ -23,7 +23,7 @@ open class MenuService(val properties: MenuProperties) {
     }
 
     @Cacheable(value = ["menus"])
-    open fun getMenu(): Menu = try {
+    fun getMenu(): Menu = try {
         MenuParser(JsoupDocument.url(properties.safeUrl())).parse()
     } catch (e: Exception) {
         logger.error("Error while reading the menu")
