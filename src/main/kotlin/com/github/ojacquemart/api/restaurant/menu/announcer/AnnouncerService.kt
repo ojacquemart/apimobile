@@ -38,8 +38,10 @@ class AnnouncerService(val template: RestTemplate,
         logger.debug("${webHooks.size} web hook(s) to announce")
         webHooks.map { webHook ->
             async {
+                val menuAsString = menu.write(webHook.writerOptions)
+
                 repeat(webHook.safeTimes()) {
-                    postMenu(webHook, menu)
+                    postMenu(webHook, menuAsString)
                     delayIfNecessary(webHook)
                 }
             }

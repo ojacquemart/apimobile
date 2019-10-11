@@ -19,9 +19,13 @@ class DishTest {
     }
 
     @Test
-    @Throws(Exception::class)
-    fun testToString() {
-        assertThat(dish1.toString()).isEqualTo("foo 1€")
+    fun testWrite() {
+        assertThat(dish1.write()).isEqualTo("foo 1€")
+    }
+
+    @Test
+    fun testWriteWithoutPrice() {
+        assertThat(dish1.write(listOf())).isEqualTo("foo")
     }
 
 }

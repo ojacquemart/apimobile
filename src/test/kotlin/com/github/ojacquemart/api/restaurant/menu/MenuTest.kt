@@ -6,7 +6,7 @@ import org.junit.Test
 
 class MenuTest {
 
-    private var menu: Menu? = null
+    private lateinit var menu: Menu
 
     @Before
     @Throws(Exception::class)
@@ -17,9 +17,8 @@ class MenuTest {
     }
 
     @Test
-    @Throws(Exception::class)
-    fun testToString() {
-        val menuAsString = menu!!.toString()
+    fun testWrite() {
+        val menuAsString = menu.write()
 
         assertThat(menuAsString).isNotNull()
         assertThat(menuAsString).isEqualTo(
@@ -33,4 +32,34 @@ class MenuTest {
                         "bar 4€\n" +
                         "\n")
     }
+
+    @Test
+    fun testWriteWithEmptyOptions() {
+        val menuAsString = menu.write(emptyList())
+
+        assertThat(menuAsString).isNotNull()
+        assertThat(menuAsString).isEqualTo(
+                        "> *foo*\n" +
+                        "foo\n" +
+                        "bar\n" +
+                        "\n" +
+                        "> *bar*\n" +
+                        "bar\n" +
+                        "bar\n" +
+                        "\n")
+    }
+
+    @Test
+    fun testWriteWithOnlyOneDishGroup() {
+        val menu =  Menu(listOf(
+                DishGroup("foo", listOf(Dish("foo", "1€"), Dish("bar", "2€")))))
+        val menuAsString = menu.write(emptyList())
+
+        assertThat(menuAsString).isNotNull()
+        assertThat(menuAsString).isEqualTo(
+                        "foo\n" +
+                        "bar\n" +
+                        "\n")
+    }
+
 }

@@ -1,8 +1,11 @@
 package com.github.ojacquemart.api.restaurant.menu.announcer
 
+import com.github.ojacquemart.api.restaurant.menu.io.WriterOption
+
 data class WebHook(var url: String? = null,
                    var times: Int? = DEFAULT_TIMES,
                    var sleep: Long? = null,
+                   var writerOptions: List<WriterOption> = emptyList(),
                    var textAttribute: String? = DEFAULT_TEXT_ATTRIBUTE,
                    var additionalAttributes: Map<String, String>? = null) {
 

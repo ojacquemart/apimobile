@@ -1,5 +1,8 @@
 package com.github.ojacquemart.api.restaurant.menu.announcer
 
+import com.github.ojacquemart.api.restaurant.menu.Dish
+import com.github.ojacquemart.api.restaurant.menu.DishGroup
+import com.github.ojacquemart.api.restaurant.menu.Menu
 import com.github.ojacquemart.api.restaurant.menu.MenuService
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
@@ -27,19 +30,22 @@ import java.net.URI
 class AnnouncerServiceTest {
 
     companion object {
-        private const val MOCK_MENU_CONTENT = "MENU DU JOUR"
+        private val MOCK_MENU =  Menu(
+                listOf(DishGroup("foo", listOf(Dish("foo", "1€"))))
+        )
+        private val MOCK_MENU_CONTENT = MOCK_MENU.write(emptyList())
     }
-
-    @Autowired
-    lateinit var announcerService: AnnouncerService
-
-    @MockkBean
-    lateinit var menuService: MenuService
 
     lateinit var mockServer: MockRestServiceServer
 
     @Autowired
+    lateinit var announcerService: AnnouncerService
+
+    @Autowired
     lateinit var restTemplate: RestTemplate
+
+    @MockkBean
+    lateinit var menuService: MenuService
 
     @Before
     fun setUp() {
@@ -67,7 +73,7 @@ class AnnouncerServiceTest {
 
     @Test
     fun announce() {
-        every { menuService.getMenu() } returns MOCK_MENU_CONTENT
+        every { menuService.getMenu() } returns MOCK_MENU
 
         announcerService.announce()
 
